@@ -1,0 +1,128 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('/mnt/data/e1856a86-d51e-4a8d-bda9-14d79d82544b.png') no-repeat center center/cover;
+  color: white;
+}
+
+/* Sobreposição escura */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.65);
+  z-index: -1;
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #ffb800; /* amarelo */
+  letter-spacing: 0.1em;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffb800;
+}
+
+/* Hero */
+.hero {
+  height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  padding-left: 6vw;
+  max-width: 800px;
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-weight: 900;
+  font-size: 3.2rem;
+  line-height: 1.15;
+  color: #ffb800;
+  margin-bottom: 0.4em;
+  font-family: 'Segoe UI Black', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  color: #eee;
+  max-width: 550px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: #f0f0d6;
+  color: #2a3a12;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgb(255 184 0 / 0.5);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ffb800;
+  color: #111;
+  box-shadow: 0 6px 16px rgb(255 184 0 / 0.8);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hero {
+    max-width: 90vw;
+    padding-left: 4vw;
+  }
+  .hero-content h1 {
+    font-size: 2.4rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  .menu {
+    padding: 14px 24px;
+  }
+  .nav-links {
+    gap: 18px;
+  }
+}

@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazenda Lagoinha - Agroflorestal Sustentável</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: white;
+        }
+        
+        /* ============ VERSÃO MOBILE ============ */
+        .mobile-version {
+            display: block;
+        }
+        
+        .desktop-version {
+            display: none;
+        }
+        
+        /* Barra de cotações mobile */
+        .quote-carousel {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background-color: #1a1a1a;
+            padding: 10px 0;
+            overflow: hidden;
+            height: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            position: relative;
+            left: 0;
+            transition: transform 0.5s ease;
+            width: 500%;
+        }
+        
+        .quote-carousel-item {
+            flex: 0 0 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .quote-carousel-item i {
+            margin-right: 8px;
+            font-size: 16px;
+            color: #4CAF50;
+        }
+        
+        /* Header principal mobile */
+        .mobile-header {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding-top: 40px;
+        }
+        
+        .mobile-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .mobile-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 0;
+        }
+        
+        .mobile-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            z-index: 2;
+        }
+        
+        .mobile-logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .mobile-logo span {
+            color: #4CAF50;
+        }
+        
+        .mobile-menu-btn {
+            color: white;
+            font-size: 24px;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        
+        .mobile-hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 25px;
+            z-index: 1;
+            color: white;
+        }
+        
+        .mobile-hero h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .mobile-hero p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            max-width: 320px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .mobile-cta-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+        
+        .language-selector {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: white;
+            z-index: 2;
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        
+        /* Menu mobile */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: #1a1a1a;
+            z-index: 1001;
+            transition: left 0.3s ease;
+            padding-top: 60px;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+            transition: background-color 0.3s;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 24px;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        
+        /* ============ VERSÃO DESKTOP ============ */
+        @media (min-width: 769px) {
+            .mobile-version {
+                display: none;
+            }
+            
+            .desktop-version {
+                display: block;
+            }
+            
+            /* Barra de cotações desktop */
+            .desktop-quote-bar {
+                background-color: #1a1a1a;
+                color: white;
+                padding: 12px 0;
+                font-size: 14px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                overflow: hidden;
+            }
+            
+            .desktop-quote-item {
+                display: flex;
+                align-items: center;
+                flex-shrink: 0;
+                white-space: nowrap;
+                padding: 0 10px;
+            }
+            
+            .desktop-quote-item i {
+                margin-right: 5px;
+                font-size: 16px;
+                color: #4CAF50;
+            }
+            
+            /* Header desktop */
+            .desktop-header {
+                position: relative;
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .desktop-video-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1;
+            }
+            
+            .desktop-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 0;
+            }
+            
+            .desktop-nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 25px 5%;
+                z-index: 2;
+                margin-top: 50px;
+            }
+            
+            .desktop-logo {
+                color: white;
+                font-size: 28px;
+                font-weight: bold;
+            }
+            
+            .desktop-logo span {
+                color: #4CAF50;
+            }
+            
+            .desktop-nav-links {
+                display: flex;
+                gap: 30px;
+            }
+            
+            .desktop-nav-links a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s;
+                font-size: 16px;
+            }
+            
+            .desktop-nav-links a:hover {
+                color: #4CAF50;
+            }
+            
+            .desktop-hero {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 0 20px;
+                z-index: 1;
+                color: white;
+            }
+            
+            .desktop-hero h1 {
+                font-size: 48px;
+                margin-bottom: 25px;
+                max-width: 800px;
+                line-height: 1.2;
+            }
+            
+            .desktop-hero p {
+                font-size: 20px;
+                margin-bottom: 35px;
+                max-width: 700px;
+                line-height: 1.5;
+            }
+            
+            .desktop-cta-button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 15px 35px;
+                font-size: 18px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: all 0.3s;
+                text-decoration: none;
+                font-weight: 600;
+            }
+            
+            .desktop-cta-button:hover {
+                background-color: #45a049;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+            
+            .desktop-language-selector {
+                position: absolute;
+                bottom: 30px;
+                right: 30px;
+                color: white;
+                z-index: 2;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        /* CSS EXCLUSIVO PARA A SECTION - FUNDO BRANCO */
+    .content-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 60px 40px; /* Padding maior para destacar */
+        gap: 50px;
+        background-color: white; /* Fundo branco apenas na section */
+        border-radius: 8px; /* Bordas levemente arredondadas */
+    }
+
+    .text-content {
+        flex: 1;
+    }
+    
+    .text-content h2 {
+        font-size: 36px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+    
+    .text-content h2 span {
+        color: #4CAF50;
+    }
+    
+    .text-content p.subtitle {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 30px;
+        max-width: 500px;
+        line-height: 1.5;
+    }
+    
+    .cta-button {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    
+    .cta-button:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+    }
+    
+    .image-content {
+        flex: 1;
+        min-height: 400px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .image-content img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+    
+    .image-content:hover img {
+        transform: scale(1.03);
+    }
+
+    /* Responsividade - Mantém o fundo branco */
+    @media (max-width: 768px) {
+        .content-section {
+            flex-direction: column;
+            padding: 40px 20px; /* Ajuste para mobile */
+            margin: 40px auto;
+            gap: 30px;
+        }
+        
+        .text-content {
+            text-align: center;
+        }
+        
+        .text-content p.subtitle {
+            max-width: 100%;
+        }
+        
+        .image-content {
+            min-height: 300px;
+            width: 100%;
+        }
+    }
+
+
+
+
+
+
+
+
+     /* ESTILOS EXCLUSIVOS PARA A SECTION DE CARDS */
+        .productions-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 50px;
+        }
+        
+        .section-title span {
+            color: #4CAF50;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .production-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .production-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .production-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .card-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .card-subtitle {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+        }
+
+
+
+
+
+        /* ESTILOS PARA A SECTION COM TEXTO SOBRE IMAGEM */
+        .banner-section {
+            position: relative;
+            max-width: 1200px;
+            margin: 40px auto;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.4); /* Overlay escuro para melhor contraste */
+            padding: 20px;
+        }
+        
+        .banner-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .banner-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .banner-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .banner-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .banner-section {
+                height: 300px;
+            }
+            
+            .banner-title {
+                font-size: 32px;
+            }
+            
+            .banner-subtitle {
+                font-size: 18px;
+            }
+        }
+
+
+
+
+
+
+
+
+        /* ESTILOS PARA A SECTION DO INSTAGRAM */
+        .instagram-section {
+            background-color: whitesmoke;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .instagram-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .instagram-logo {
+            font-size: 40px;
+            color: #E1306C; /* Cor do Instagram */
+            margin-bottom: 20px;
+        }
+        
+        .instagram-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .instagram-handle {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .instagram-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .instagram-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 600px) {
+            .instagram-title {
+                font-size: 24px;
+            }
+            
+            .instagram-handle {
+                font-size: 16px;
+            }
+        }
+
+
+
+
+
+
+
+
+        /* ESTILOS DO FOOTER */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 20px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            color: #4CAF50;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #ecf0f1;
+        }
+        
+        .footer-contact-item i {
+            margin-right: 10px;
+            color: #4CAF50;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            background-color: #4CAF50;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+
+
+        /* ESTILOS DA SECTION NEWSLETTER */
+        .newsletter-section {
+            background-color: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-header {
+            font-size: 14px;
+            color: #4CAF50;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-title {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .newsletter-description {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .newsletter-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .newsletter-button:hover {
+            background-color: #45a049;
+        }
+        
+        .newsletter-message {
+            margin-top: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .success {
+            color: #4CAF50;
+        }
+        
+        .error {
+            color: #f44336;
+        }
+
+
+
+
+
+
+
+        /* ESTILOS DA SEÇÃO DE BENEFÍCIOS */
+        .honey-benefits {
+            padding: 80px 0;
+            background-color: #fff9f0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .section-title span {
+            color: #4CAF50;
+        }
+        
+        .section-subtitle {
+            color: #555;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .benefit-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .benefit-card:hover .benefit-image img {
+            transform: scale(1.1);
+        }
+        
+        .benefit-content {
+            padding: 25px;
+        }
+        
+        .benefit-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .section-subtitle {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- ============ VERSÃO MOBILE ============ -->
+    <div class="mobile-version">
+        <!-- Barra de cotações mobile -->
+        <div class="quote-carousel">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="quote-carousel-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span id="dolar-mobile">Dólar: R$ 5,20</span>
+                    </div>
+                    <div class="quote-carousel-item">
+                        <i class="fas fa-euro-sign"></i>
+                        <span id="euro-mobile">Euro: R$ 5,60</span>
+                    </div>
+                    <div class="quote-carousel-item">
+                        <i class="fas fa-coins"></i>
+                        <span id="ouro-mobile">Ouro: $ 1.800,00</span>
+                    </div>
+                    <div class="quote-carousel-item">
+                        <i class="fab fa-bitcoin"></i>
+                        <span id="bitcoin-mobile">BTC: $ 40.000,00</span>
+                    </div>
+                    <div class="quote-carousel-item">
+                        <i class="fas fa-honey-pot"></i>
+                        <span id="mel-mobile">Mel: R$ 45,90/kg</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header mobile -->
+        <header class="mobile-header">
+            <video class="mobile-video-bg" autoplay muted loop playsinline>
+                <source src="videos/01.mp4" type="video/mp4">
+            </video>
+            <div class="mobile-overlay"></div>
+
+            <nav class="mobile-nav">
+                <div class="mobile-logo">Fazenda <span>Lagoinha</span></div>
+                <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+
+            <div class="mobile-hero">
+                <h1>Produzindo mel com propósito, preservando o futuro</h1>
+                <p>Na Fazenda Lagoinha, a doçura do nosso mel vem da harmonia com a natureza. Geramos crédito de carbono e protegemos o meio ambiente com responsabilidade.</p>
+                <a href="#" class="mobile-cta-button">SAIBA MAIS</a>
+            </div>
+
+            <div class="language-selector"></div>
+
+            <!-- Menu mobile -->
+            <div class="mobile-menu" id="mobileMenu">
+                <button class="close-menu" id="closeMenu" aria-label="Fechar menu">
+                    <i class="fas fa-times"></i>
+                </button>
+                <a href="index.html"><i class="fas fa-building"></i>Home</a>
+                <a href="quem-somos.html"><i class="fas fa-user"></i>Quem Somos?</a>
+                <a href="#"><i class="fas fa-tree"></i> Produtos</a>
+                <a href="#"><i class="fas fa-project-diagram"></i> Projetos</a>
+                <a href="faq.html"><i class="fas fa-blog"></i> FAQ</a>
+                <a href="contato.html"><i class="fas fa-envelope"></i> Contato</a>
+            </div>
+        </header>
+    </div>
+
+    <!-- ============ VERSÃO DESKTOP ============ -->
+    <div class="desktop-version">
+        <!-- Barra de cotações desktop -->
+        <div class="desktop-quote-bar">
+            <div class="desktop-quote-item">
+                <i class="fas fa-dollar-sign"></i>
+                <span id="dolar-desktop">Dólar: R$ 5,20</span>
+            </div>
+            <div class="desktop-quote-item">
+                <i class="fas fa-euro-sign"></i>
+                <span id="euro-desktop">Euro: R$ 5,60</span>
+            </div>
+            <div class="desktop-quote-item">
+                <i class="fas fa-coins"></i>
+                <span id="ouro-desktop">Ouro: $ 1.800,00</span>
+            </div>
+            <div class="desktop-quote-item">
+                <i class="fab fa-bitcoin"></i>
+                <span id="bitcoin-desktop">BTC: $ 40.000,00</span>
+            </div>
+            <div class="desktop-quote-item">
+                <i class="fas fa-honey-pot"></i>
+                <span id="mel-desktop">Mel: R$ 45,90/kg</span>
+            </div>
+        </div>
+
+        <!-- Header desktop -->
+        <header class="desktop-header">
+            <video class="desktop-video-bg" autoplay muted loop>
+                <source src="videos/01.mp4" type="video/mp4">
+            </video>
+            <div class="desktop-overlay"></div>
+
+            <nav class="desktop-nav">
+                <div class="desktop-logo">Fazenda <span>Lagoinha</span></div>
+                <div class="desktop-nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="quem-somos.html">Quem Somos?</a>
+                    <a href="#">Produtos</a>
+                    <a href="#">Projetos</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="contato.html">Contato</a>
+                </div>
+            </nav>
+
+            <div class="desktop-hero">
+                <h1>Produzindo mel com propósito, preservando o futuro</h1>
+                <p>Na Fazenda Lagoinha, a doçura do nosso mel vem da harmonia com a natureza. Geramos crédito de carbono e protegemos o meio ambiente com responsabilidade.</p>
+                <a href="#" class="desktop-cta-button">SAIBA MAIS</a>
+            </div>
+
+            <div class="desktop-language-selector"></div>
+        </header>
+    </div>
+
+
+    <section class="content-section">
+        <div class="text-content">
+            <h2>Conheça a <span>Fazenda Lagoinha</span></h2>
+            <p class="subtitle">Na Fazenda Lagoinha, acreditamos que é possível produzir com consciência. Nossa abordagem sustentável une o melhor da agricultura regenerativa com ações concretas de preservação ambiental. Com isso, cultivamos um futuro mais verde, equilibrado e produtivo — onde o mel puro e os créditos de carbono caminham lado a lado em harmonia com a natureza.</p>
+            <a href="#" class="cta-button">SAIBA MAIS</a>
+        </div>
+        
+        <div class="image-content">
+            <img src="imagens/banners/01.jfif" alt="Fazenda Lagoinha - Agrofloresta">
+        </div>
+    </section>
+
+
+
+     <section class="productions-section">
+        <h2 class="section-title">Nossas <span>Produções</span></h2>
+        
+        <div class="cards-container">
+            <!-- Card 1 - Uvas -->
+            <div class="production-card">
+                <div class="card-image">
+                    <img src="imagens/produtos/01.jfif" alt="Produção de Uvas">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Uvas</h3>
+                    <p class="card-subtitle">Cultivadas com técnicas sustentáveis que preservam o solo e garantem qualidade superior.</p>
+                </div>
+            </div>
+            
+            <!-- Card 2 - Maracujás -->
+            <div class="production-card">
+                <div class="card-image">
+                    <img src="imagens/produtos/02.jfif" alt="Produção de Maracujás">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Maracujás</h3>
+                    <p class="card-subtitle">Plantio orgânico que resulta em frutos mais saborosos e nutritivos para sua família.</p>
+                </div>
+            </div>
+            
+            <!-- Card 3 - Bananas -->
+            <div class="production-card">
+                <div class="card-image">
+                    <img src="imagens/produtos/03.jfif" alt="Produção de Bananas">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Bananas</h3>
+                    <p class="card-subtitle">Cultivadas em harmonia com a floresta, sem agrotóxicos e com todo cuidado natural.</p>
+                </div>
+            </div>
+            
+            <!-- Card 4 - Mel -->
+            <div class="production-card">
+                <div class="card-image">
+                    <img src="imagens/produtos/04.jpeg" alt="Produção de Mel">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Mel</h3>
+                    <p class="card-subtitle">Produzido por abelhas nativas em nosso apiário sustentável, puro e natural.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-header">NEWSLETTER</div>
+            <h2 class="newsletter-title">Fique por dentro das novidades!</h2>
+            <p class="newsletter-description">Quer receber nossas novidades? Cadastre-se e comece a recebê-las!</p>
+            
+            <form id="newsletterForm" class="newsletter-form" action="https://formsubmit.co/igormoncao86@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://seusite.com/obrigado.html"> <!-- Substitua pela sua URL de sucesso -->
+                <input type="email" name="email" class="newsletter-input" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="newsletter-button">CADASTRAR</button>
+            </form>
+            
+            <div id="message" class="newsletter-message"></div>
+        </div>
+    </section>
+
+
+
+
+ <section class="honey-benefits">
+        <div class="section-header">
+            <h2 class="section-title">Benefícios do <span>Mel Puro</span></h2>
+            <p class="section-subtitle">Conheça as propriedades extraordinárias do nosso mel 100% natural produzido na Fazenda Lagoinha</p>
+        </div>
+        
+        <div class="benefits-grid">
+            <!-- Benefício 1 -->
+            <div class="benefit-card">
+                <div class="benefit-image">
+                    <img src="imagens/bene/01.webp" alt="Mel natural">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Fortalecimento Imunológico</h3>
+                    <p class="benefit-description">Nosso mel é rico em antioxidantes e propriedades antibacterianas que ajudam a fortalecer o sistema imunológico e prevenir doenças.</p>
+                </div>
+            </div>
+            
+            <!-- Benefício 2 -->
+            <div class="benefit-card">
+                <div class="benefit-image">
+                    <img src="imagens/bene/02.webp" alt="Mel com limão">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Alívio para Garganta</h3>
+                    <p class="benefit-description">O mel da Fazenda Lagoinha acalma irritações na garganta e alivia a tosse, sendo um remédio natural eficaz para resfriados.</p>
+                </div>
+            </div>
+            
+            <!-- Benefício 3 -->
+            <div class="benefit-card">
+                <div class="benefit-image">
+                    <img src="imagens/bene/01.png" alt="Mel em colher">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Fonte de Energia</h3>
+                    <p class="benefit-description">Rico em frutose e glicose, nosso mel fornece energia rápida e sustentada, ideal para atletas e quem precisa de disposição.</p>
+                </div>
+            </div>
+            
+            <!-- Benefício 4 -->
+            <div class="benefit-card">
+                <div class="benefit-image">
+                    <img src="imagens/bene/01.jpg" alt="Mel em pote">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Propriedades Curativas</h3>
+                    <p class="benefit-description">Nosso mel auxilia na cicatrização de feridas e queimaduras leves, além de ter ação anti-inflamatória comprovada.</p>
+                </div>
+            </div>
+            
+            <!-- Benefício 5 -->
+            <div class="benefit-card">
+                <div class="benefit-image">
+                    <img src="imagens/bene/02.jpg" alt="Abelhas produzindo mel">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Produção Sustentável</h3>
+                    <p class="benefit-description">Criamos nossas abelhas com técnicas que preservam o meio ambiente, garantindo um mel puro e ecologicamente correto.</p>
+                </div>
+            </div>
+            
+            <!-- Benefício 6 -->
+            <div class="benefit-card">
+                <div class="benefit-image">
+                    <img src="imagens/bene/01.jpeg" alt="Mel em alimentos">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Substituto Natural do Açúcar</h3>
+                    <p class="benefit-description">Nosso mel é o adoçante perfeito para suas receitas, com mais nutrientes e menos impacto glicêmico que o açúcar refinado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="banner-section">
+        <img src="imagens/banners/01.png" 
+             alt="Produtos da Fazenda Lagoinha" 
+             class="banner-image">
+        
+        <div class="banner-content">
+            <h2 class="banner-title">Conheça o Mel Lagoinha!</h2>
+            <p class="banner-subtitle"> Adoçar suas refeições ficou ainda mais fácil e saudável. Nosso mel 100% natural garante a pureza e a qualidade que você merece. Perfeito para chás, cafés, sobremesas e muito mais!</p>
+            <a href="#" class="banner-button">SAIBA MAIS</a>
+        </div>
+    </section>
+
+
+
+
+
+
+
+<section class="instagram-section">
+        <div class="instagram-container">
+            <div class="instagram-logo">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <h2 class="instagram-title">Estamos no instagram</h2>
+            <p class="instagram-handle">@lagoinha.fazenda</p>
+            <a href="https://www.instagram.com/lagoinha.fazenda/" target="_blank" class="instagram-button">SIGA-NOS</a>
+        </div>
+    </section>
+
+
+
+
+
+
+     <footer class="footer">
+        <div class="footer-container">
+            <!-- Coluna 1: Navegação -->
+            <div class="footer-column">
+                <h3>Navegar</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="#">Produtos</a></li>
+                    <li><a href="#">Promoções</a></li>
+                    <li><a href="quem-somos.html">Site Institucional</a></li>
+                    <li><a href="contato.html">Visite a Fazenda</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            
+            <!-- Coluna 2: Produtos -->
+            <div class="footer-column">
+                <h3>Produtos</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Uvas</a></li>
+                    <li><a href="#">Maracujás</a></li>
+                    <li><a href="#">Bananas</a></li>
+                    <li><a href="#">Outros Produtos</a></li>
+                    <li><a href="#">Para todo o Brasil</a></li>
+                    <li><a href="#">Promoções</a></li>
+                </ul>
+            </div>
+            
+            <!-- Coluna 3: Contato -->
+            <div class="footer-column">
+                <h3>Entre em contato</h3>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(19) 99118-5221</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(19) 99750-8129</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contato@fazendalagoinha.com.br</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Pilão Arcado - Bahia</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Visite nosso Blog</span>
+                </div>
+            </div>
+            
+            <!-- Coluna 4: Redes Sociais -->
+            <div class="footer-column">
+                <h3>Acompanhe a Fazenda!</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2023 Fazenda Lagoinha - Todos os direitos reservados
+        </div>
+    </footer>
+    <script>
+        // ============ FUNÇÕES MOBILE ============
+        // Carrossel mobile automático
+        function initMobileCarousel() {
+            const track = document.getElementById('carouselTrack');
+            if (!track) return;
+            
+            const items = document.querySelectorAll('.quote-carousel-item');
+            let currentIndex = 0;
+            let isPaused = false;
+            
+            function moveToNext() {
+                if (isPaused) return;
+                
+                currentIndex = (currentIndex + 1) % items.length;
+                track.style.transform = `translateX(-${currentIndex * 20}%)`;
+                
+                // Reset suave quando chegar ao final
+                if (currentIndex === items.length - 1) {
+                    setTimeout(() => {
+                        track.style.transition = 'none';
+                        currentIndex = 0;
+                        track.style.transform = 'translateX(0)';
+                        setTimeout(() => {
+                            track.style.transition = 'transform 0.5s ease';
+                        }, 50);
+                    }, 500);
+                }
+            }
+
+            // Iniciar o carrossel
+            let interval = setInterval(moveToNext, 3000);
+
+            // Pausar quando interagir
+            const carousel = document.querySelector('.quote-carousel');
+            if (carousel) {
+                carousel.addEventListener('touchstart', () => {
+                    isPaused = true;
+                    clearInterval(interval);
+                });
+                
+                carousel.addEventListener('touchend', () => {
+                    isPaused = false;
+                    interval = setInterval(moveToNext, 3000);
+                });
+            }
+        }
+
+        // Menu mobile
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('menuBtn');
+            const closeMenu = document.getElementById('closeMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (menuBtn && closeMenu && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                closeMenu.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+
+                // Fechar menu ao clicar em um link
+                document.querySelectorAll('.mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+            }
+        }
+
+        // ============ FUNÇÕES GERAIS ============
+        // Atualizar cotações (simuladas)
+        function updateQuotes() {
+            // Valores simulados - substitua por chamadas de API reais
+            const quotes = {
+                dolar: 5.20,
+                euro: 5.60,
+                ouro: 1800,
+                bitcoin: 40000,
+                mel: 45.90
+            };
+
+            // Atualizar versão mobile
+            document.getElementById('dolar-mobile') && (document.getElementById('dolar-mobile').textContent = `Dólar: R$ ${quotes.dolar.toFixed(2)}`);
+            document.getElementById('euro-mobile') && (document.getElementById('euro-mobile').textContent = `Euro: R$ ${quotes.euro.toFixed(2)}`);
+            document.getElementById('ouro-mobile') && (document.getElementById('ouro-mobile').textContent = `Ouro: $ ${quotes.ouro.toFixed(2)}`);
+            document.getElementById('bitcoin-mobile') && (document.getElementById('bitcoin-mobile').textContent = `BTC: $ ${quotes.bitcoin.toLocaleString()}`);
+            document.getElementById('mel-mobile') && (document.getElementById('mel-mobile').textContent = `Mel: R$ ${quotes.mel.toFixed(2)}/kg`);
+
+            // Atualizar versão desktop
+            document.getElementById('dolar-desktop') && (document.getElementById('dolar-desktop').textContent = `Dólar: R$ ${quotes.dolar.toFixed(2)}`);
+            document.getElementById('euro-desktop') && (document.getElementById('euro-desktop').textContent = `Euro: R$ ${quotes.euro.toFixed(2)}`);
+            document.getElementById('ouro-desktop') && (document.getElementById('ouro-desktop').textContent = `Ouro: $ ${quotes.ouro.toFixed(2)}`);
+            document.getElementById('bitcoin-desktop') && (document.getElementById('bitcoin-desktop').textContent = `BTC: $ ${quotes.bitcoin.toLocaleString()}`);
+            document.getElementById('mel-desktop') && (document.getElementById('mel-desktop').textContent = `Mel: R$ ${quotes.mel.toFixed(2)}/kg`);
+        }
+
+        // Configurar vídeos
+        function setupVideos() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                // Tentar reproduzir com promise para lidar com autoplay policies
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Autoplay não permitido:", error);
+                    });
+                }
+            });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            updateQuotes();
+            initMobileCarousel();
+            initMobileMenu();
+            setupVideos();
+        });
+
+        // Detectar mudança de orientação/tamanho
+        window.addEventListener('resize', function() {
+            // Forçar redesenho para corrigir bugs visuais
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+            }, 300);
+        });
+
+
+
+
+
+
+
+        // Processamento do formulário
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const message = document.getElementById('message');
+            const formData = new FormData(form);
+            
+            // Mostrar mensagem de carregamento
+            message.style.display = 'block';
+            message.textContent = 'Enviando...';
+            message.className = 'newsletter-message';
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    message.textContent = 'Obrigado por se cadastrar! Verifique seu e-mail.';
+                    message.className = 'newsletter-message success';
+                    form.reset();
+                } else {
+                    throw new Error('Erro ao enviar');
+                }
+            })
+            .catch(error => {
+                message.textContent = 'Ocorreu um erro. Tente novamente mais tarde.';
+                message.className = 'newsletter-message error';
+            });
+        });
+    </script>
+</body>
+</html>

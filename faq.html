@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Fazenda Lagoinha</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c5e1a;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .faq-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .faq-item {
+            border-bottom: 1px solid #eaeaea;
+            padding: 20px 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            color: #2c5e1a;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding-right: 30px;
+            color: #555;
+        }
+        .toggle-icon {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+            color: #2c5e1a;
+            margin-left: 15px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px; /* Ajuste conforme necessário */
+            margin-top: 15px;
+        }
+        .faq-item.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Perguntas Frequentes - Fazenda Lagoinha</h1>
+    
+    <div class="intro">
+        <p>Bem-vindo à página de FAQ da Fazenda Lagoinha, localizada em Pilão Arcado, Bahia.<br>
+        Aqui você encontra respostas para as dúvidas mais comuns sobre nossos produtos: mel, maracujá, uva e banana.</p>
+    </div>
+    
+    <div class="faq-container">
+        <!-- Produtos -->
+        <div class="faq-item">
+            <div class="faq-question">
+                Quais produtos a Fazenda Lagoinha cultiva?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>A Fazenda Lagoinha é especializada na produção de mel de abelha, maracujá, uva e banana. Todos cultivados com técnicas sustentáveis e cuidado artesanal na região de Pilão Arcado, Bahia.</p>
+            </div>
+        </div>
+        
+        <!-- Mel -->
+        <div class="faq-item">
+            <div class="faq-question">
+                Como é produzido o mel da Fazenda Lagoinha?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Nosso mel é produzido por abelhas que polinizam as flores nativas do sertão baiano. Seguimos rigorosos padrões de qualidade, desde a coleta até o envase, garantindo um produto puro e natural.</p>
+            </div>
+        </div>
+        
+        <!-- Maracujá -->
+        <div class="faq-item">
+            <div class="faq-question">
+                Qual a época de safra do maracujá?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Na região de Pilão Arcado, o maracujá tem sua principal safra entre os meses de dezembro a maio. Trabalhamos com variedades adaptadas ao clima semiárido da Bahia.</p>
+            </div>
+        </div>
+        
+        <!-- Uva -->
+        <div class="faq-item">
+            <div class="faq-question">
+                Que tipo de uva é cultivada na fazenda?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Cultivamos variedades de uva de mesa adaptadas ao clima quente, como a Itália e a Benitaka. Nossas uvas são doces e suculentas, aproveitando a irrigação do Rio São Francisco.</p>
+            </div>
+        </div>
+        
+        <!-- Banana -->
+        <div class="faq-item">
+            <div class="faq-question">
+                A banana da Fazenda Lagoinha é orgânica?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Utilizamos técnicas de cultivo que priorizam o manejo integrado de pragas e o mínimo de intervenção química. Nossas bananas são produzidas com responsabilidade ambiental.</p>
+            </div>
+        </div>
+        
+        <!-- Visitas -->
+        <div class="faq-item">
+            <div class="faq-question">
+                A fazenda recebe visitantes?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Sim, agendamos visitas para grupos interessados em conhecer nossos cultivos e processos de produção. Entre em contato para marcar sua visita.</p>
+            </div>
+        </div>
+        
+        <!-- Compras -->
+        <div class="faq-item">
+            <div class="faq-question">
+                Como posso comprar os produtos da Fazenda Lagoinha?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Nossos produtos são vendidos diretamente na fazenda, em feiras locais e para distribuidores. Também estamos expandindo para vendas online - acompanhe nossas redes sociais para atualizações.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                item.classList.toggle('active');
+                
+                const icon = question.querySelector('.toggle-icon');
+                if (item.classList.contains('active')) {
+                    icon.textContent = '×';
+                } else {
+                    icon.textContent = '+';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

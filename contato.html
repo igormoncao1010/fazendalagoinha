@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Fazenda Lagoinha</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c5e1a;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .contact-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c5e1a;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        button {
+            background-color: #2c5e1a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1e3d12;
+        }
+        .contact-info {
+            background-color: #e8f4e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .required {
+            color: #e74c3c;
+        }
+        @media (max-width: 600px) {
+            .contact-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Contato - Fazenda Lagoinha</h1>
+    
+    <div class="success-message" id="successMessage">
+        Obrigado pelo seu contato! Retornaremos em breve.
+    </div>
+    
+    <div class="contact-container">
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Nome completo <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-mail <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Assunto <span class="required">*</span></label>
+                <select id="subject" name="subject" required>
+                    <option value="">Selecione...</option>
+                    <option value="Compra de produtos">Compra de produtos</option>
+                    <option value="Visita à fazenda">Visita à fazenda</option>
+                    <option value="Parcerias">Parcerias</option>
+                    <option value="Dúvidas">Dúvidas</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="product">Produto de interesse</label>
+                <select id="product" name="product">
+                    <option value="">Nenhum em específico</option>
+                    <option value="Mel">Mel</option>
+                    <option value="Maracujá">Maracujá</option>
+                    <option value="Uva">Uva</option>
+                    <option value="Banana">Banana</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Mensagem <span class="required">*</span></label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit">Enviar Mensagem</button>
+        </form>
+    </div>
+    
+    <div class="contact-info">
+        <h3>Informações de Contato</h3>
+        <p><strong>Fazenda Lagoinha</strong><br>
+        Pilão Arcado - BA</p>
+        <p><strong>Email:</strong> contato@fazendalagoinha.com.br<br>
+        <strong>Telefone:</strong> (74) 9XXXX-XXXX</p>
+        <p>Horário de atendimento: Segunda a Sexta, 8h às 17h</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+    <script>
+        // Inicializa o EmailJS (substitua com seu User ID)
+        (function() {
+            emailjs.init("YOUR_USER_ID"); // Você precisa criar conta no EmailJS e colocar seu User ID aqui
+        })();
+        
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Envia o formulário via EmailJS
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                .then(function() {
+                    // Mostra mensagem de sucesso
+                    document.getElementById('successMessage').style.display = 'block';
+                    // Rola a página para mostrar a mensagem
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                    // Limpa o formulário
+                    document.getElementById('contactForm').reset();
+                    // Esconde a mensagem após 5 segundos
+                    setTimeout(function() {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 5000);
+                }, function(error) {
+                    alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente mais tarde.');
+                    console.log('EmailJS Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>

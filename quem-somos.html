@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Somos - Fazenda Lagoinha</title>
+    <style>
+        /* ESTILOS GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* BARRA DE COTAÇÕES */
+        .top-bar {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            white-space: nowrap;
+            padding: 0 10px;
+        }
+        
+        .top-bar-item i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        /* MENU PRINCIPAL */
+        header {
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            top: 40px;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #4CAF50;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        /* CONTEÚDO PRINCIPAL */
+        main {
+            padding-top: 120px;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            max-width: 700px;
+        }
+        
+        /* ABOUT SECTION */
+        .about-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 50px;
+        }
+        
+        .section-title span {
+            color: #4CAF50;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* VALUES SECTION */
+        .values-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 40px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .value-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        /* TEAM SECTION */
+        .team-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 5px solid #4CAF50;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-name {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: #4CAF50;
+            font-style: italic;
+        }
+        
+        /* FOOTER */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .top-bar {
+                font-size: 12px;
+                gap: 15px;
+                padding: 8px 5px;
+            }
+            
+            header {
+                top: 34px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            main {
+                padding-top: 150px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- BARRA DE COTAÇÕES -->
+    <div class="top-bar">
+        <div class="top-bar-item">
+            <i class="fas fa-dollar-sign"></i>
+            <span id="dolar">Dólar: R$ 5,20</span>
+        </div>
+        <div class="top-bar-item">
+            <i class="fas fa-euro-sign"></i>
+            <span id="euro">Euro: R$ 5,60</span>
+        </div>
+        <div class="top-bar-item">
+            <i class="fas fa-coins"></i>
+            <span id="ouro">Ouro: $ 1.800,00</span>
+        </div>
+        <div class="top-bar-item">
+            <i class="fab fa-bitcoin"></i>
+            <span id="bitcoin">BTC: $ 40.000,00</span>
+        </div>
+        <div class="top-bar-item">
+            <i class="fas fa-honey-pot"></i>
+            <span id="mel">Mel: R$ 45,90/kg</span>
+        </div>
+    </div>
+
+    <!-- MENU PRINCIPAL -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Fazenda <span>Lagoinha</span></div>
+            <nav class="nav-links">
+                <a href="#">Para Empresas</a>
+                <a href="#">Para Pessoa Física</a>
+                <a href="#">Cadastrar Agrofloresta</a>
+                <a href="#">Projetos</a>
+                <a href="#">Blog</a>
+                <a href="#">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <img src="imagens/banners/02.png" alt="Fazenda Lagoinha" class="hero-image">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Nossa História</h1>
+                <p class="hero-subtitle">Conheça a trajetória da Fazenda Lagoinha e nossa paixão pela agricultura sustentável</p>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">Quem <span>Somos</span></h2>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Nossa Origem</h3>
+                        <p>A Fazenda Lagoinha foi fundada em 2023, fruto da visão empreendedora de Raniere Barboza — um homem de raízes fortes, agricultor por paixão, empresário por vocação e pai dedicado. Localizada no município de Pilão Arcado, na Bahia, a fazenda é um símbolo do novo agronegócio brasileiro: moderno, consciente e conectado com as necessidades do planeta.<br><br>
+
+Desde sua fundação, a Fazenda Lagoinha tem como missão aliar produção agrícola de qualidade com responsabilidade ambiental e social. Nossa terra fértil é lar de cultivos cuidadosamente manejados, como mel de abelhas nativas, maracujá suculento, uvas de mesa e bananas frescas, todos produzidos com técnicas sustentáveis que respeitam os ciclos da natureza e valorizam os recursos locais.<br><br>
+
+Acreditamos que é possível prosperar no campo sem abrir mão da preservação. Por isso, somos mais do que produtores: somos guardiões do meio ambiente. Atuamos também na geração de créditos de carbono, promovendo o reflorestamento e práticas de baixo impacto ambiental, contribuindo com um modelo de agricultura que compensa emissões e protege a biodiversidade.<br><br>
+
+Cada produto que sai da Fazenda Lagoinha carrega consigo mais do que sabor e qualidade: carrega história, respeito e compromisso com o futuro. Estamos construindo um legado duradouro, onde as novas gerações poderão colher os frutos do que estamos semeando hoje.<br><br>
+
+Seja bem-vindo à Fazenda Lagoinha.<br>
+Aqui, o campo é vivo, doce e cheio de propósito.
+
+</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="imagens/produtos/04.jfif" alt="Fazenda Lagoinha - Vista aérea">
+                    </div>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="imagens/produtos/05.jfif" alt="Produção sustentável">
+                    </div>
+                    <div class="about-text">
+                        <h3>Nossa Filosofia</h3>
+                        <p>Na Fazenda Lagoinha, acreditamos que a terra é um bem sagrado, e cuidar dela é mais do que uma responsabilidade — é um compromisso com a vida.<br><br>
+
+Nossa filosofia é guiada por três pilares fundamentais:<br><br>
+
+🌿 Sustentabilidade com propósito
+Não produzimos apenas por produzir. Cada ação no campo é pensada para equilibrar produtividade com preservação. Aplicamos técnicas agrícolas que respeitam os ciclos naturais, promovem a regeneração do solo e reduzem o impacto ambiental. Também atuamos ativamente na compensação de carbono, contribuindo para um planeta mais limpo e equilibrado.<br><br>
+
+🍯 Qualidade com respeito à natureza
+Nossos produtos — o mel, o maracujá, a uva e a banana — refletem o cuidado em cada etapa do processo. Desde a escolha das sementes até a colheita, tudo é feito com atenção aos detalhes, dedicação e respeito ao tempo da natureza. Acreditamos que qualidade de verdade nasce do cuidado, não da pressa.<br><br>
+
+🤝 Compromisso com as pessoas
+A Fazenda Lagoinha é feita por gente. Gente que trabalha com amor, que acredita no campo e que valoriza suas raízes. Geramos empregos, valorizamos a mão de obra local e atuamos com ética, transparência e responsabilidade social.<br><br>
+
+🌻 Aqui, produzimos com alma.
+Mais do que uma fazenda, somos um projeto de vida que une tradição, inovação e consciência. Um espaço onde o futuro brota em cada flor, em cada fruto, em cada colmeia.</p>
+                      
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALUES SECTION -->
+        <section class="values-section">
+            <div class="container">
+                <h2 class="section-title">Nossos <span>Valores</span></h2>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="value-title">Sustentabilidade</h3>
+                        <p>Praticamos agricultura regenerativa que preserva os recursos naturais para as futuras gerações.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="value-title">Qualidade</h3>
+                        <p>Nossos produtos passam por rigoroso controle de qualidade desde o plantio até a entrega.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="value-title">Transparência</h3>
+                        <p>Mantemos relações honestas e abertas com nossos clientes, colaboradores e comunidade.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM SECTION -->
+        <section class="team-section">
+            <div class="container">
+                <h2 class="section-title">Nossa <span>Família</span></h2>
+                
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/01.png" alt="Raniere Braboza">
+                        </div>
+                        <h3 class="member-name">Raniere Barboza</h3>
+                        <p class="member-role">Fundador e Agricultor</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/03.png" alt="Maria Oliveira">
+                        </div>
+                        <h3 class="member-name">Malton Cruz</h3>
+                        <p class="member-role">Diretor Comercial</p>
+                    </div>
+                    
+
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/02.png" alt="Maria Oliveira">
+                        </div>
+                        <h3 class="member-name">Leonardo Freitas</h3>
+                        <p class="member-role">Diretor de produção e logística</p>
+                    </div>
+
+
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/04.png" alt="Maria Oliveira">
+                        </div>
+                        <h3 class="member-name">Amândio Jurema</h3>
+                        <p class="member-role">Gestor de Produção</p>
+                    </div>
+
+
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/05.png" alt="Maria Oliveira">
+                        </div>
+                        <h3 class="member-name">João Alves</h3>
+                        <p class="member-role">Primeiro Funcionário</p>
+                    </div>
+
+
+                     <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/08.png" alt="Maria Oliveira">
+                        </div>
+                        <h3 class="member-name">Domingas</h3>
+                        <p class="member-role">Governanta</p>
+                    </div>
+
+
+                     <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/09.png" alt="Maria Oliveira">
+                        </div>
+                        <h3 class="member-name">Maiquelina</h3>
+                        <p class="member-role">Auxiliar da Sede</p>
+                    </div>
+
+
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/07.png" alt="Maria Oliveira">
+                        </div>
+                        <h3 class="member-name">Klebio</h3>
+                        <p class="member-role">Funcionário</p>
+                    </div>
+
+
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="imagens/quipe/06.png" alt="Carlos Mendes">
+                        </div>
+                        <h3 class="member-name">Kleiton</h3>
+                        <p class="member-role">Funcionário</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Sobre Nós</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">História</a></li>
+                        <li><a href="#">Missão e Valores</a></li>
+                        <li><a href="#">Sustentabilidade</a></li>
+                        <li><a href="#">Certificações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Produtos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Frutas Orgânicas</a></li>
+                        <li><a href="#">Hortaliças</a></li>
+                        <li><a href="#">Laticínios</a></li>
+                        <li><a href="#">Mel e Derivados</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Visite a Fazenda</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                        <li><a href="#">Fale Conosco</a></li>
+                        <li><a href="#">Fornecedores</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2023 Fazenda Lagoinha - Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Atualização das cotações (opcional)
+        function updateQuotes() {
+            // Simulação - substitua por API real
+            const quotes = {
+                dolar: 5.20,
+                euro: 5.60,
+                ouro: 1800,
+                bitcoin: 40000,
+                mel: 45.90
+            };
+            
+            document.getElementById('dolar').textContent = `Dólar: R$ ${quotes.dolar.toFixed(2)}`;
+            document.getElementById('euro').textContent = `Euro: R$ ${quotes.euro.toFixed(2)}`;
+            document.getElementById('ouro').textContent = `Ouro: $ ${quotes.ouro.toFixed(2)}`;
+            document.getElementById('bitcoin').textContent = `BTC: $ ${quotes.bitcoin.toLocaleString()}`;
+            document.getElementById('mel').textContent = `Mel: R$ ${quotes.mel.toFixed(2)}/kg`;
+        }
+        
+        updateQuotes();
+        setInterval(updateQuotes, 300000); // Atualiza a cada 5 minutos
+    </script>
+</body>
+</html>
